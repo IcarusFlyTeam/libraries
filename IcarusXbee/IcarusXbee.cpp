@@ -24,6 +24,8 @@ IcarusXbee::IcarusXbee(IcarusIO* xbeeIO, IcarusAddress address, Stream *port ){
 	strcpy(cmdFire[Carica], cmdCarica);
 	strcpy(cmdFire[Timeout], cmdTimeout);
 	strcpy(cmdFire[MissingCountdown], cmdMissingCountdown);
+	strcpy(cmdFire[startLog], cmdStartLogging);
+	strcpy(cmdFire[stopLog], cmdStopLogging);
 }
 
 void IcarusXbee::addToPayload(dataType tipo){
