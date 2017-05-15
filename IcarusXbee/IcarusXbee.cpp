@@ -256,9 +256,9 @@ void IcarusXbee::setReceiverAddress(IcarusAddress destinatario){
 }
 
 void IcarusXbee::SendCmdFire(typeCmdFire comando){
+	xbeeIO->cmdFire[FIRESIZE]='\0';
 	memcpy(xbeeIO->cmdFire, cmdFire[comando], FIRESIZE + 1);
 	addToPayload(ComandoLancio);
-	xbeeIO->cmdFire[FIRESIZE]='\0';
 	Send();
 }
 
@@ -270,9 +270,22 @@ typeCmdFire IcarusXbee::readCmdFire(){
 		//xbeeIO->myDebugSerial->println(xbeeIO->cmdFire);
 		return  static_cast<typeCmdFire>(i);}
 	}
+	return  static_cast<typeCmdFire>(numCmdFire+1);
 }
 
 uint16_t IcarusXbee::getCmd(){
 	xbeeIO->cmdAvailable=false;
 	return xbeeIO->Cmd;
+}
+
+bool IcarusXbee::CheckAcknCmdFire(typeCmdFire cmd, unsigned long int timeout) {
+	unsigned long int startWait = millis();
+	while (millis()-startWait<=timeout) {
+		Read();
+		if (xbeeIO->cmdFireAvailable) {
+			if (readCmdFire() == cmd)
+				return true;
+		}
+	}
+	return false;
 }

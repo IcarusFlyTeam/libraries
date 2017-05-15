@@ -54,6 +54,7 @@ class IcarusXbee
 	void Send();
 	void Read();
 	void SendCmdFire(typeCmdFire);
+	bool CheckAcknCmdFire(typeCmdFire, unsigned long int);
 	typeCmdFire readCmdFire();
 	uint16_t getCmd();
 	
