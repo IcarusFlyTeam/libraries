@@ -34,7 +34,7 @@ uint16_t IcarusCelle::measureForce()
 {
 	// Obtain ADC raw measurement
 	uint16_t lastForceADC = analogRead(iPin);
-	Serial.println(lastForceADC);
+	
 	// 
 	//int16_t lastForce = map(lastForceADC, iMin, iMax, oMin, oMax) + oMin;
 	//Serial.println(lastForce);
