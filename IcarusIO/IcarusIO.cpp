@@ -19,7 +19,7 @@ void IcarusIO::printIncomingMsg(){
 	#ifdef IcarusCelle_h
     case Celle: 		for (int j=0;j<NUM_CELLE;j++){
 							myDebugSerial->print(Load[j]);
-							myDebugSerial->print("|");}
+							myDebugSerial->print(";");}
 							myDebugSerial->print(";");
 							break;
 	#endif
